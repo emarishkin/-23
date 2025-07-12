@@ -636,68 +636,70 @@ export const OOP = () => {
 // console.log(getAveragePrice(devices))
 
 
-class Client {
-    public name: string
-    private _balance: number = 0
+// class Client {
+//     public name: string
+//     private _balance: number = 0
 
-    constructor(name: string, balance: number) {
-        this.name = name
-        this._balance = balance
-    }
+//     constructor(name: string, balance: number) {
+//         this.name = name
+//         this._balance = balance
+//     }
 
-    get balance(): number {
-        return this._balance
-    }
+//     get balance(): number {
+//         return this._balance
+//     }
 
-    deposit(amount: number): void {
-        if (amount > 0) {
-            this._balance += amount
-            console.log(`✅ ${this.name} внес ${amount}₽`)
-        } else {
-            console.log('❌ Сумма должна быть положительной')
-        }
-    }
+//     deposit(amount: number): void {
+//         if (amount > 0) {
+//             this._balance += amount
+//             console.log(`✅ ${this.name} внес ${amount}₽`)
+//         } else {
+//             console.log('❌ Сумма должна быть положительной')
+//         }
+//     }
 
-    withdraw(amount: number): boolean {
-        if (amount <= 0) {
-            console.log('❌ Нельзя снять ноль или меньше')
-            return false
-        } else if (amount <= this._balance) {
-            this._balance -= amount
-            console.log(`✅ ${this.name} снял ${amount}₽`)
-            return true
-        } else {
-            console.log('❌ Недостаточно средств')
-            return false
-        }
-    }
-}
+//     withdraw(amount: number): boolean {
+//         if (amount <= 0) {
+//             console.log('❌ Нельзя снять ноль или меньше')
+//             return false
+//         } else if (amount <= this._balance) {
+//             this._balance -= amount
+//             console.log(`✅ ${this.name} снял ${amount}₽`)
+//             return true
+//         } else {
+//             console.log('❌ Недостаточно средств')
+//             return false
+//         }
+//     }
+// }
 
-class Bank {
-    private clients:Client[] = []
+// class Bank {
+//     private clients:Client[] = []
 
-    addClient(client:Client):void {
-        this.clients.push(client)
-    }
+//     addClient(client:Client):void {
+//         this.clients.push(client)
+//     }
 
-    findClient(name:string):Client | undefined {
-       return this.clients.find(item => item.name === name)
-    }
+//     findClient(name:string):Client | undefined {
+//        return this.clients.find(item => item.name === name)
+//     }
 
-    transfer(fromName:string,toName:string,amount:number){
-        const sender = this.findClient(fromName)
-        const receiver = this.findClient(toName)
+//     transfer(fromName:string,toName:string,amount:number){
+//         const sender = this.findClient(fromName)
+//         const receiver = this.findClient(toName)
         
-        if(!sender || !receiver){
-            console.log('❌ Один из клиентов не найден')
-            return
-        }
-        if(sender.withdraw(amount)){
-            receiver.deposit(amount)
-            console.log(`💸 Перевод ${amount}₽ от ${fromName} к ${toName} выполнен`)
-        }
-    }
-}
+//         if(!sender || !receiver){
+//             console.log('❌ Один из клиентов не найден')
+//             return
+//         }
+//         if(sender.withdraw(amount)){
+//             receiver.deposit(amount)
+//             console.log(`💸 Перевод ${amount}₽ от ${fromName} к ${toName} выполнен`)
+//         }
+//     }
+// }
+
+
 
 
 
