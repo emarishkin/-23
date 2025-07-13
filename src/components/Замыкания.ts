@@ -192,17 +192,135 @@ export const Замыкания = () => {
 // }
 
 
-const Users:{[key:string]:any}[] = []
+// const Users:{[key:string]:any}[] = []
 
 
 
+// // function createCounter(){
+// //     let count = 0
+// //     return {
+// //         increment(){
+// //             count++
+// //         },
+// //         decrement(){
+// //             count --
+// //         },
+// //         get(){
+// //             return count
+// //         },
+// //         reset(){
+// //             count = 0
+// //         }
+// //     }
+// // }
+// // const res = createCounter()
+// // res.increment()
+// // res.increment()
+// // res.increment()
+// // res.increment()
+// // res.decrement()
+// // console.log(res.get())
 
 
 
+// function createCounter(){
+//     let count = 0
+//     return function calc() {
+//         return{
+//           increment(){
+//            return count++
+//         },
+//         decrement(){
+//            return  count --
+//         },
+//         get(){
+//             return count
+//         },
+//         reset(){
+//             count = 0
+//         }
+//         }
+//     }
+// }
+// const res = createCounter()
+// console.log(res().increment())
+// console.log(res().increment())
+// console.log(res().increment())
+// console.log(res().decrement())
+
+// interface Task {
+//   id: number
+//   title: string
+//   completed: boolean
+// }
 
 
 
+// function createTaskManager() {
+  
+//   let  arr:Task[] = []
+//   let nextStep = 1
 
+//   return {
+//     add(title: string):void {
+//       arr.push({id:nextStep++,title,completed:false})
+//     },
+//     remove(id: number):void {
+//       arr = arr.filter(item => item.id !== id)
+//     },
+//     toggle(id: number):void{
+//         const task = arr.find(item => item.id ===id)
+//         if(task)task.completed = !task.completed
+//     },
+//     getAll(){
+//         return [...arr]
+//     },
+//     getCompleted(){
+//       return arr.filter(item => item.completed === true)
+//     }
+//   }
+// }
+
+// const manager = createTaskManager()
+// manager.add("Купить хлеб")
+// manager.add("Сделать уроки")
+// console.log(manager.getAll())
+// manager.toggle(2)
+// console.log(manager.getAll())
+// manager.toggle(2)
+// console.log(manager.getAll())
+// manager.toggle(2)
+// console.log(manager.getCompleted())
+
+
+// interface Command{
+//     id:number
+//     command:string
+// }
+
+// function createHistoryManager(){
+//     let arr:Command[] = []
+//     let nextId = 1
+
+//     return{
+//         add(command: string): void{
+//         arr.push({id:nextId++,command})
+//         },
+//         undo(): string | null {
+//             if(arr.length>0){
+//                 const lastEl = arr.pop()!
+//                 return lastEl.command
+//             } else {
+//                 return null
+//             }
+//         },
+//         getHistory(): string[]{
+//            return arr.map(item => item.command)
+//         }
+//     }
+    
+    
+// }
 
 
 
