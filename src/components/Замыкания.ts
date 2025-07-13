@@ -324,6 +324,39 @@ export const Замыкания = () => {
 
 
 
+// function createCalculator(){
+//   let value:number = 0
+//   let history = []
+
+//   return {
+//     add(n: number): number{
+//         return value += n
+//     },
+//     subtract(n: number): number {
+//         return value-=n
+//     },
+//     multiply(n: number): number{
+//         return value *= n
+//     },
+//     divide(n: number): number{
+//         if(n===0){
+//             throw new Error("Деление на ноль невозможно");
+//         } else {
+//             value = value / n 
+//             return value
+//         }
+//     },
+//     get(): number{
+//         return value
+//     }
+//   }
+// }
+
+
+
+
+
+
 
 
 
