@@ -237,43 +237,43 @@ export const Objects = () => {
 
 
 
-type Grade = {
-  subject: string;
-  score: number;
-};
+// type Grade = {
+//   subject: string;
+//   score: number;
+// };
 
-type Student = {
-  name: string;
-  group: string;
-  grades: Grade[];
-};
+// type Student = {
+//   name: string;
+//   group: string;
+//   grades: Grade[];
+// };
 
-const students: Student[] = [
-  {
-    name: 'Ivan',
-    group: 'A',
-    grades: [
-      { subject: 'Math', score: 90 },
-      { subject: 'History', score: 85 },
-    ],
-  },
-  {
-    name: 'Maria',
-    group: 'B',
-    grades: [
-      { subject: 'Math', score: 78 },
-      { subject: 'History', score: 95 },
-    ],
-  },
-  {
-    name: 'Oleg',
-    group: 'A',
-    grades: [
-      { subject: 'Math', score: 88 },
-      { subject: 'History', score: 92 },
-    ],
-  },
-];
+// const students: Student[] = [
+//   {
+//     name: 'Ivan',
+//     group: 'A',
+//     grades: [
+//       { subject: 'Math', score: 90 },
+//       { subject: 'History', score: 85 },
+//     ],
+//   },
+//   {
+//     name: 'Maria',
+//     group: 'B',
+//     grades: [
+//       { subject: 'Math', score: 78 },
+//       { subject: 'History', score: 95 },
+//     ],
+//   },
+//   {
+//     name: 'Oleg',
+//     group: 'A',
+//     grades: [
+//       { subject: 'Math', score: 88 },
+//       { subject: 'History', score: 92 },
+//     ],
+//   },
+// ];
 
 
 
@@ -287,59 +287,426 @@ const students: Student[] = [
 
 // console.log(averageBall);
 
-const subjectScores: Record<string, number[]> = {};
+// const subjectScores: Record<string, number[]> = {};
 
-for(let student of students){
-  for (let grade of student.grades){
-    if(!subjectScores[grade.subject]){
-      subjectScores[grade.subject] = []
-    }
-    subjectScores[grade.subject].push(grade.score)
-  }
-}
-console.log(subjectScores);
+// for(let student of students){
+//   for (let grade of student.grades){
+//     if(!subjectScores[grade.subject]){
+//       subjectScores[grade.subject] = []
+//     }
+//     subjectScores[grade.subject].push(grade.score)
+//   }
+// }
+// console.log(subjectScores);
 
-const averageBySubject: Record<string, number> = {};
+// const averageBySubject: Record<string, number> = {};
 
-for (let subject in subjectScores){
-  const avg = subjectScores[subject].reduce((acc,item)=>acc+item,0)/subjectScores[subject].length
-  averageBySubject[subject] = Number(avg.toFixed(1))
-}
-console.log(averageBySubject);
-
-
+// for (let subject in subjectScores){
+//   const avg = subjectScores[subject].reduce((acc,item)=>acc+item,0)/subjectScores[subject].length
+//   averageBySubject[subject] = Number(avg.toFixed(1))
+// }
+// console.log(averageBySubject);
 
 
 
 
 
+// type Item = {
+//   name: string;
+//   price: number;
+//   category: string;
+// };
+
+// const items: Item[] = [
+//   { name: 'iPhone', price: 1200, category: 'Electronics' },
+//   { name: 'TV', price: 800, category: 'Electronics' },
+//   { name: 'T-shirt', price: 25, category: 'Clothing' },
+//   { name: 'Jeans', price: 50, category: 'Clothing' },
+//   { name: 'Shoes', price: 90, category: 'Clothing' },
+// ];
+
+// let newObj:Record<string,Item[]> = {}
+
+// for(let item of items) {
+//   if(!newObj[item.category]){
+//     newObj[item.category] = []
+//   }
+//   newObj[item.category].push(item)
+// }
+// console.log(newObj);
+
+
+// let newPrice:Record<string,number> = {}
+
+// for(let price in newObj){
+//   const res = newObj[price].reduce((acc,item)=>acc+item.price,0)/newObj[price].length
+//   newPrice[price] = Number(res.toFixed(1))
+// }
+
+// console.log(newPrice);
+
+
+
+
+
+// type Order = {
+//   id: number;
+//   customer: string;
+//   items: {
+//     name: string;
+//     category: string;
+//     price: number;
+//     quantity: number;
+//   }[];
+// };
+
+// const orders: Order[] = [
+//   {
+//     id: 1,
+//     customer: 'Anna',
+//     items: [
+//       { name: 'iPhone', category: 'Electronics', price: 1200, quantity: 1 },
+//       { name: 'TV', category: 'Electronics', price: 800, quantity: 1 },
+//     ],
+//   },
+//   {
+//     id: 2,
+//     customer: 'Mike',
+//     items: [
+//       { name: 'T-shirt', category: 'Clothing', price: 25, quantity: 2 },
+//       { name: 'Shoes', category: 'Clothing', price: 90, quantity: 1 },
+//     ],
+//   },
+//   {
+//     id: 3,
+//     customer: 'Anna',
+//     items: [
+//       { name: 'Jeans', category: 'Clothing', price: 50, quantity: 1 },
+//       { name: 'TV', category: 'Electronics', price: 800, quantity: 1 },
+//     ],
+//   },
+// ];
+
+//  let newObj:Record<string,number> = {}
+
+// for (let order of orders){
+//   let result = order.items.reduce((acc,item)=>{
+//     acc+=item.price * item.quantity;
+//     return acc
+//   },0)
+
+//   if (!newObj[order.customer]) {
+//     newObj[order.customer] = 0;
+//   }
+
+//   newObj[order.customer] += result
+// }
+
+// console.log(newObj);
 
 
 
 
 
 
+// type Item = {
+//   product: string;
+//   price: number;
+//   quantity: number;
+//   category: string;
+// };
+
+// type Order = {
+//   id: number;
+//   customer: string;
+//   items: Item[];
+// };
+
+// const orders: Order[] = [
+//   {
+//     id: 1,
+//     customer: 'Anna',
+//     items: [
+//       { product: 'iPhone', price: 1200, quantity: 1, category: 'Electronics' },
+//       { product: 'TV', price: 800, quantity: 1, category: 'Electronics' },
+//       { product: 'T-shirt', price: 25, quantity: 2, category: 'Clothing' },
+//     ],
+//   },
+//   {
+//     id: 2,
+//     customer: 'Mike',
+//     items: [
+//       { product: 'Jeans', price: 50, quantity: 1, category: 'Clothing' },
+//       { product: 'Shoes', price: 90, quantity: 1, category: 'Clothing' },
+//     ],
+//   },
+//   {
+//     id: 3,
+//     customer: 'Anna',
+//     items: [
+//       { product: 'Laptop', price: 2000, quantity: 1, category: 'Electronics' },
+//       { product: 'Dress', price: 120, quantity: 1, category: 'Clothing' },
+//     ],
+//   },
+// ];
+
+// const newObj:Record<string,Record<string,number>> = {}
+
+// for (let order of orders){
+
+//   if(!newObj[order.customer]){
+//     newObj[order.customer] = {}
+//   }
+
+//   for(let item of order.items){
+//       if(!newObj[order.customer][item.category]){
+//         newObj[order.customer][item.category]= 0
+//       }
+//       newObj[order.customer][item.category] += item.price*item.quantity
+//   }
+// }
+
+// console.log(newObj);
+
+
+
+
+
+// type Item = {
+//   product: string;
+//   price: number;
+//   quantity: number;
+//   category: string;
+// };
+
+// type Order = {
+//   id: number;
+//   customer: string;
+//   items: Item[];
+// };
+
+// const orders: Order[] = [
+//   {
+//     id: 1,
+//     customer: 'Anna',
+//     items: [
+//       { product: 'iPhone', price: 1200, quantity: 1, category: 'Electronics' },
+//       { product: 'TV', price: 800, quantity: 1, category: 'Electronics' },
+//       { product: 'T-shirt', price: 25, quantity: 2, category: 'Clothing' },
+//     ],
+//   },
+//   {
+//     id: 2,
+//     customer: 'Mike',
+//     items: [
+//       { product: 'Jeans', price: 50, quantity: 1, category: 'Clothing' },
+//       { product: 'Shoes', price: 90, quantity: 1, category: 'Clothing' },
+//     ],
+//   },
+//   {
+//     id: 3,
+//     customer: 'Anna',
+//     items: [
+//       { product: 'Laptop', price: 2000, quantity: 1, category: 'Electronics' },
+//       { product: 'Dress', price: 120, quantity: 1, category: 'Clothing' },
+//     ],
+//   },
+// ];
+
+
+
+// const newObj:Record<string,Record<string,number>> = {}
+
+
+// for (let order of orders){
+//   if(!newObj[order.customer]){
+//     newObj[order.customer] = {}
+//   }
+//   for(let item of order.items){
+//     if(!newObj[order.customer][item.category]){
+//       newObj[order.customer][item.category] = 0
+//     }
+//     newObj[order.customer][item.category] += item.quantity
+//   }
+// }
+// console.log(newObj);
+
+
+
+// type Order = {
+//   customer: string;
+//   items: {
+//     name: string;
+//     price: number;
+//     quantity: number;
+//   }[];
+// };
+
+// const orders: Order[] = [
+//   {
+//     customer: 'Anna',
+//     items: [
+//       { name: 'Phone', price: 500, quantity: 1 },
+//       { name: 'Case', price: 20, quantity: 2 },
+//     ],
+//   },
+//   {
+//     customer: 'Mike',
+//     items: [{ name: 'Laptop', price: 1500, quantity: 1 }],
+//   },
+//   {
+//     customer: 'Anna',
+//     items: [{ name: 'Charger', price: 30, quantity: 1 }],
+//   },
+// ];
+
+
+// const newObj:Record<string,number> = {}
+
+// for (const order of orders){
+
+//   if(!newObj[order.customer]){
+//     newObj[order.customer] = 0 
+//   }
+//   newObj[order.customer] += Number(order.items.reduce((acc,item)=>acc+item.price*item.quantity,0))
+// }
+// console.log(newObj);
+
+
+
+
+
+// type Order = {
+//   customer: string;
+//   items: {
+//     product: string;
+//     brand: string;
+//     price: number;
+//     quantity: number;
+//   }[];
+// };
+// const orders: Order[] = [
+//   {
+//     customer: 'Alice',
+//     items: [
+//       { product: 'iPhone', brand: 'Apple', price: 1000, quantity: 1 },
+//       { product: 'AirPods', brand: 'Apple', price: 200, quantity: 2 },
+//     ],
+//   },
+//   {
+//     customer: 'Bob',
+//     items: [
+//       { product: 'Galaxy S21', brand: 'Samsung', price: 900, quantity: 1 },
+//       { product: 'TV', brand: 'Samsung', price: 800, quantity: 1 },
+//     ],
+//   },
+//   {
+//     customer: 'Alice',
+//     items: [
+//       { product: 'iPad', brand: 'Apple', price: 600, quantity: 1 },
+//     ],
+//   },
+// ];
+
+// const newObj:Record<string, number> = {}
+
+// for (let order of orders){
+//   for (let item of order.items){
+
+//     const total = item.price * item.quantity
+
+//     // const result = order.items.reduce((acc,item)=>acc + total,0)
+
+//     if(!newObj[item.brand]){
+//       newObj[item.brand] = 0
+//     }
+
+//     newObj[item.brand] += total
+
+//   }
+// }
+
+// console.log(newObj);
 
 
 
 
 
 
+// enum OrderStatus {
+//   Pending = "Pending",
+//   Shipped = "Shipped",
+//   Delivered = "Delivered"
+// }
 
+// type OrderItem = {
+//   product: string;
+//   category: string;
+//   price: number;
+//   quantity: number;
+// };
 
+// type Order = {
+//   id: number;
+//   status: OrderStatus;
+//   items: OrderItem[];
+// };
 
+// const orders: Order[] = [
+//   {
+//     id: 1,
+//     status: OrderStatus.Pending,
+//     items: [
+//       { product: "iPhone", category: "Electronics", price: 1000, quantity: 1 },
+//       { product: "Case", category: "Accessories", price: 20, quantity: 2 },
+//     ],
+//   },
+//   {
+//     id: 2,
+//     status: OrderStatus.Shipped,
+//     items: [
+//       { product: "TV", category: "Electronics", price: 1500, quantity: 1 },
+//     ],
+//   },
+//   {
+//     id: 3,
+//     status: OrderStatus.Delivered,
+//     items: [
+//       { product: "Shoes", category: "Clothing", price: 100, quantity: 2 },
+//     ],
+//   },
+//   {
+//     id: 4,
+//     status: OrderStatus.Pending,
+//     items: [
+//       { product: "Headphones", category: "Electronics", price: 200, quantity: 1 },
+//       { product: "T-shirt", category: "Clothing", price: 30, quantity: 2 },
+//     ],
+//   },
+// ];
 
+// type Result = Record<OrderStatus, Record<string, number>>;
 
+// const result: Result = {
+//   [OrderStatus.Pending]: {},
+//   [OrderStatus.Shipped]: {},
+//   [OrderStatus.Delivered]: {}
+// };
 
+// for (let order of orders) {
+//   if(!result[order.status]){
+//     result[order.status] = {}
+//   }
+//   for(let total of order.items){
+//     const res = total.price * total.quantity
 
-
-
-
-
-
-
-
-
+//     if(!result[order.status][total.category]){
+//       result[order.status][total.category] = 0
+//     }
+//     result[order.status][total.category] += res
+//   }
+// }
+// console.log(result);
 
 
 
