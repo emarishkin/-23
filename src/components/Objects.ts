@@ -710,10 +710,32 @@ export const Objects = () => {
 
 
 
+// function uniqueNumbers(numbers: number[]): number[] {
+//   return [...new Set(numbers)]
+// }
+// console.log(uniqueNumbers([34,523,45,234,6,23456,245,6,2456,134,523,41,324,123,45,134,523,145,234,5]))
 
 
+const words = ['apple', 'banana', 'apple', 'orange', 'banana', 'apple'];
 
+function averageScores(words: string[]): Record<string, number>  {
+  const newObj:Record<string,number> = {}
 
+  for(let word of words){
+    if(!newObj[word]){
+      newObj[word] = 0
+    }
+    newObj[word] +=1
+    // if(newObj[word]){
+    //   newObj[word] += 1
+    // } else {
+    //   newObj[word] = 1
+    // }
+  }
+  return newObj
+
+}
+console.log(averageScores(words))
 
 
 
