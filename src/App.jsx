@@ -1,7 +1,7 @@
 
 import { Objects } from "./components/Objects"
 import { OOP } from "./components/OOP"
-import { OrdersTable } from "./components/ReactTSX"
+import { ProductList } from "./components/ReactTSX"
 import {Замыкания} from './components/Замыкания'
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
       <OOP/>
       <Замыкания />
       <Objects />
-      <OrdersTable />
+      <ProductList />
     </>
   )
 }
