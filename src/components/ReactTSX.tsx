@@ -1,6 +1,6 @@
 // import { ChangeEvent, FC, FormEvent, useMemo, useState } from "react";
 
-import { FC, useMemo, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useMemo, useState } from "react";
 
 // type Order = {
 //   id: number;
@@ -151,52 +151,166 @@ import { FC, useMemo, useState } from "react";
 
 
 
-type Product = {
+// type Product = {
+//   id: number;
+//   name: string;
+//   price: number;
+//   category: 'shoes' | 'clothes' | 'accessories';
+// };
+
+// const mockProducts: Product[] = [
+//   { id: 1, name: 'Sneakers', price: 200, category: 'shoes' },
+//   { id: 2, name: 'Jacket', price: 350, category: 'clothes' },
+// ];
+
+
+// export const ProductList:FC = () => {
+
+//   const [sortBy,setSortBy] = useState<'price' | 'name'>('price')
+  
+//   const sortedProducts = useMemo(()=>{
+
+//     const sorted = [...mockProducts]
+//     if(sortBy === 'price'){
+//       return sorted.sort((a,b)=>a.price-b.price)
+//     } else {
+//       return sorted.sort((a,b)=>a.name.localeCompare(b.name))
+//     }
+//     return sorted
+
+//   },[sortBy])
+
+
+//   return (
+//     <div>
+//          <select value={sortBy} onChange={(e)=>setSortBy(e.target.value as 'price' | 'name')}>
+//              <option value="price">По цене</option>
+//              <option value="name">По имени</option>
+//          </select>
+ 
+//         <div>
+//           {sortedProducts.map(item=>(
+//           <div key={item.id}>
+//             <h2>{item.name}</h2>
+//             <p>{item.price}</p>
+//             <p>{item.category}</p>
+//           </div>
+//         ))}
+//         </div>
+//     </div>
+//   )
+// } 
+
+
+
+
+type User = {
   id: number;
   name: string;
-  price: number;
-  category: 'shoes' | 'clothes' | 'accessories';
+  age: number;
+  role: 'admin' | 'manager' | 'user';
 };
 
-const mockProducts: Product[] = [
-  { id: 1, name: 'Sneakers', price: 200, category: 'shoes' },
-  { id: 2, name: 'Jacket', price: 350, category: 'clothes' },
-];
 
-
-export const ProductList:FC = () => {
-
-  const [sortBy,setSortBy] = useState<'price' | 'name'>('price')
+export const UserForm:FC = () => {
   
-  const sortedProducts = useMemo(()=>{
+  const [filterUser,setFilterUser] = useState<'all' | User['role']>('all')
 
-    const sorted = [...mockProducts]
-    if(sortBy === 'price'){
-      return sorted.sort((a,b)=>a.price-b.price)
-    } else {
-      return sorted.sort((a,b)=>a.name.localeCompare(b.name))
+  const [userList,setUserList] = useState<User[]>([])
+  const [addUser,setAddUser] = useState({
+    name:'',
+    age:0,
+    role:'user'
+  })
+
+  const handleChange = (e:ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const {name,value} = e.target
+    setAddUser({...addUser,[name]:name === 'age'? Number(value):value})
+  }
+
+  const handleSubmit = (e:FormEvent) => {
+    e.preventDefault()
+
+    const newUser:User = {
+      id:Date.now(),
+      name:addUser.name,
+      age:addUser.age,
+      role:addUser.role as 'admin' | 'manager' | 'user'
     }
-    return sorted
 
-  },[sortBy])
+    setUserList([...userList,newUser])
+    setAddUser({name:'',age:0,role:'user'})
+  }
 
+  const FilterIserFun = useMemo(()=>{
+    const filtred = [...userList]
+   
+    if(filterUser === 'all')return userList
+    if(filterUser === 'admin'){
+      return userList.filter(item=>item.role === 'admin')
+    } else if (filterUser === 'manager') {
+      return userList.filter(item=>item.role === 'manager')
+    } else if (filterUser === 'user') {
+      return userList.filter(item=>item.role === 'user')
+    }
+    return filtred
+ 
+  },[filterUser,userList])
 
   return (
     <div>
-         <select value={sortBy} onChange={(e)=>setSortBy(e.target.value as 'price' | 'name')}>
-             <option value="price">По цене</option>
-             <option value="name">По имени</option>
+      <div>
+         <select value={filterUser} onChange={(e)=>setFilterUser(e.target.value as 'all' | 'admin' | 'manager' | 'user')}>
+            <option value="all">Все</option>
+            <option value="admin">Админ</option>
+            <option value="manager">Менеджер</option>
+            <option value="user">Пользователь</option>
          </select>
- 
-        <div>
-          {sortedProducts.map(item=>(
+      </div>
+
+      <form onSubmit={handleSubmit}>
+          <h2>Форма добавдения нового пользователя</h2>
+          <div>
+            <label>Имя:</label>
+            <input 
+            type="text" 
+            name="name"
+            value={addUser.name}
+            onChange={handleChange}
+            required 
+            />
+          </div>
+          <div>
+            <label>Возраст:</label>
+            <input 
+            type="number" 
+            name="age"
+            value={addUser.age}
+            onChange={handleChange}
+            required 
+            />
+          </div>
+          <div>
+            <label>Роль:</label>
+            <select name="role" value={addUser.role} onChange={handleChange}>
+              <option value="admin">Админ</option>
+              <option value="manager">Менеджер</option>
+              <option value="user">Пользователь</option>
+            </select>
+          </div>
+
+          <button type="submit">Добавить</button>
+      </form>
+
+      <div>
+          {FilterIserFun.map(item => (
           <div key={item.id}>
             <h2>{item.name}</h2>
-            <p>{item.price}</p>
-            <p>{item.category}</p>
+            <p>{item.age}</p>
+            <p>{item.role}</p>
           </div>
-        ))}
-        </div>
+          ))}
+      </div>
     </div>
   )
 } 
