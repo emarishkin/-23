@@ -1,108 +1,145 @@
-import { ChangeEvent, FC, FormEvent, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useMemo, useState } from "react";
 
-
-type Product = {
-  name: string;
-  price: number;
-  category: 'не выбрано' | 'Косметика' | 'Обувь' | 'Штаны' | 'Куртки';
+type Order = {
+  id: number;
+  customer: string;
+  amount: number;
+  status: 'pending' | 'shipped' | 'delivered';
 };
 
+interface OrderCardProps{
+    order:Order
+}
 
-
-export const ProductForm:FC = () => {
-    
-    const [formList,setFormList] = useState<Product[]>([])
-    const [ADDform,setADDForm] = useState({
-        name:'',
-        price:0,
-        category:'не выбрано'
-    }) 
-    
-    const handleChange = (e:ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const {name,value} = e.target
-       setADDForm({...ADDform,[name]:name === 'price'? Number(value):value})
-    }
-     
-    const handleSubmit = (e:FormEvent) => {
-        e.preventDefault()
-
-        const newProduct:Product = {
-         name:ADDform.name,
-         price:ADDform.price,
-         category:ADDform.category as 'не выбрано' | 'Косметика' | 'Обувь' | 'Штаны' | 'Куртки'
-        }
-        
-        setFormList([...formList,newProduct])
-        setADDForm({
-            ...ADDform,name:'',price:0,category:'не выбрано'
-        })
-
-    }
-
-
-
+const OrderCard:FC<OrderCardProps> = ({order}) => {
     return (
+       <div>
+          <h2>{`Заказчик ${order.customer}`}</h2>
+          <h2>{`Оплатил ${order.amount} рублей`}</h2>
+          <p><span>{`Статус ${order.status}`}</span></p>
+       </div>
+    )
+}
+
+
+export const OrdersTable:FC = () => {
+
+  const [statusFilter, setStatusFilter] = useState<"all" | Order["status"]>("all")
+  
+  const [orderList,setOrderList] = useState<Order[]>([])
+  const [addOrder,setAddOreder] = useState({
+    customer:'',
+    amount:0,
+    status:'pending'
+  })
+
+  const handleChange = (e:ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const {name,value} = e.target
+    setAddOreder({
+        ...addOrder, [name]:name === 'amound'? Number(value):value
+    })
+  }
+
+  const handleFilterChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setStatusFilter(e.target.value as "all" | Order["status"]);
+  };
+
+   const filteredOrders = useMemo(() => {
+    if (statusFilter === "all") return orderList;
+    return orderList.filter((order) => order.status === statusFilter);
+  }, [statusFilter]);
+
+  const handleSubmit = (e:FormEvent) => {
+    e.preventDefault()
+
+    const newOrder:Order = {
+        id:Date.now(),
+        customer:addOrder.customer,
+        amount:addOrder.amount,
+        status:addOrder.status as 'pending' | 'shipped' | 'delivered'
+    }
+
+    setOrderList([...orderList,newOrder])
+    setAddOreder({customer:'',amount:0,status:''})
+
+  }
+
+  return(
+    <div>
+
         <div>
-
+        <label>Фильтр по статусу:</label>
+        <select value={statusFilter} onChange={handleFilterChange}>
+          <option value="all">Все</option>
+          <option value="pending">В ожидании</option>
+          <option value="shipped">Отправлено</option>
+          <option value="delivered">Доставлено</option>
+        </select>
+        </div>
         
+        <div>
+           {filteredOrders.map((order) => (
+            <tr key={order.id}>
+              <td>{order.customer}</td>
+              <td>{order.amount}₽</td>
+              <td>{order.status}</td>
+            </tr>
+          ))}
+        </div>
+        
+
+
         <form onSubmit={handleSubmit}>
-            <h2>Форма</h2>
+            <h2>Таблица заказов</h2>
 
             <div>
-                <label>Имя:</label>
-                <input
-                 type="text" 
-                 name="name"
-                 value={ADDform.name}
-                 onChange={handleChange}
-                 placeholder="Введите имя"
-                 required
-                 />
+                <label>Заказчик:</label>
+                <input 
+                type="text" 
+                name="customer"
+                value={addOrder.customer}
+                onChange={handleChange}
+                required
+                />
             </div>
-
             <div>
-                <label>Цена:</label>
-                <input
-                 type="number" 
-                 name="price"
-                 value={ADDform.price}
-                 onChange={handleChange}
-                 placeholder="Введите цену"
-                 required
-                 />
+                <label>Cумма:</label>
+                <input 
+                type="number" 
+                name="amount"
+                value={addOrder.amount}
+                onChange={handleChange}
+                required
+                />
             </div>
-
             <div>
-                <label>Категория:</label>
-                <select name="category" value={ADDform.category} onChange={handleChange}>
-                     <option value="не выбрано">не выбрано</option>
-                     <option value="Косметика">Косметика</option>
-                     <option value="Обувь">Обувь</option>
-                     <option value="Штаны">Штаны</option>
-                     <option value="Куртки">Куртки</option>
+                <label>Cумма:</label>
+                <select name="status" value={addOrder.status} onChange={handleChange} >
+                    <option value="pending">в рассмотрении</option>
+                    <option value="shipped">отправленно</option>
+                    <option value="delivered">доставлен</option>
                 </select>
             </div>
 
-            <button type="submit">Добавить</button>
+            <button type="submit">Отправить</button>
+      
         </form>
 
         <div>
-            {!formList.length?(
-                <h2>Список пуст</h2>
-            ):(
+            <h2>Таблица карточек:</h2>
+            {orderList && (
                 <div>
-                    <h2>Список продуктов</h2>
-                    {formList.map(item=>(
-                        <div>
-                            <h2>{item.name}</h2>
-                            <p>{item.price}руб</p>
-                            <p>{item.category}</p>
-                        </div>
+                    {orderList.map(item => (
+                        <OrderCard key={item.id} order={item} />
                     ))}
                 </div>
             )}
+            {!orderList.length && (
+                <h2>заказов нет</h2>
+            )}
         </div>
 
-        </div>
-    )
+    </div>
+  )
+
 }
