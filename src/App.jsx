@@ -1,7 +1,8 @@
 
 import { Objects } from "./components/Objects"
 import { OOP } from "./components/OOP"
-import { UserForm } from "./components/ReactTSX"
+import { ProductList } from "./components/ReactTSX"
+
 
 import {Замыкания} from './components/Замыкания'
 
@@ -12,7 +13,7 @@ function App() {
       <OOP/>
       <Замыкания />
       <Objects />
-      <UserForm />
+      <ProductList />
     </>
   )
 }

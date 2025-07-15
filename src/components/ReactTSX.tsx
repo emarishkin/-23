@@ -204,67 +204,186 @@ import { ChangeEvent, FC, FormEvent, useMemo, useState } from "react";
 
 
 
-type User = {
+// type User = {
+//   id: number;
+//   name: string;
+//   age: number;
+//   role: 'admin' | 'manager' | 'user';
+// };
+
+
+// export const UserForm:FC = () => {
+  
+//   const [filterUser,setFilterUser] = useState<'all' | User['role']>('all')
+
+//   const [userList,setUserList] = useState<User[]>([])
+//   const [addUser,setAddUser] = useState({
+//     name:'',
+//     age:0,
+//     role:'user'
+//   })
+
+//   const handleChange = (e:ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+//     const {name,value} = e.target
+//     setAddUser({...addUser,[name]:name === 'age'? Number(value):value})
+//   }
+
+//   const handleSubmit = (e:FormEvent) => {
+//     e.preventDefault()
+
+//     const newUser:User = {
+//       id:Date.now(),
+//       name:addUser.name,
+//       age:addUser.age,
+//       role:addUser.role as 'admin' | 'manager' | 'user'
+//     }
+
+//     setUserList([...userList,newUser])
+//     setAddUser({name:'',age:0,role:'user'})
+//   }
+
+//   const FilterIserFun = useMemo(()=>{
+//     const filtred = [...userList]
+   
+//     if(filterUser === 'all')return userList
+//     if(filterUser === 'admin'){
+//       return userList.filter(item=>item.role === 'admin')
+//     } else if (filterUser === 'manager') {
+//       return userList.filter(item=>item.role === 'manager')
+//     } else if (filterUser === 'user') {
+//       return userList.filter(item=>item.role === 'user')
+//     }
+//     return filtred
+ 
+//   },[filterUser,userList])
+
+//   return (
+//     <div>
+//       <div>
+//          <select value={filterUser} onChange={(e)=>setFilterUser(e.target.value as 'all' | 'admin' | 'manager' | 'user')}>
+//             <option value="all">Все</option>
+//             <option value="admin">Админ</option>
+//             <option value="manager">Менеджер</option>
+//             <option value="user">Пользователь</option>
+//          </select>
+//       </div>
+
+//       <form onSubmit={handleSubmit}>
+//           <h2>Форма добавдения нового пользователя</h2>
+//           <div>
+//             <label>Имя:</label>
+//             <input 
+//             type="text" 
+//             name="name"
+//             value={addUser.name}
+//             onChange={handleChange}
+//             required 
+//             />
+//           </div>
+//           <div>
+//             <label>Возраст:</label>
+//             <input 
+//             type="number" 
+//             name="age"
+//             value={addUser.age}
+//             onChange={handleChange}
+//             required 
+//             />
+//           </div>
+//           <div>
+//             <label>Роль:</label>
+//             <select name="role" value={addUser.role} onChange={handleChange}>
+//               <option value="admin">Админ</option>
+//               <option value="manager">Менеджер</option>
+//               <option value="user">Пользователь</option>
+//             </select>
+//           </div>
+
+//           <button type="submit">Добавить</button>
+//       </form>
+
+//       <div>
+//           {FilterIserFun.map(item => (
+//           <div key={item.id}>
+//             <h2>{item.name}</h2>
+//             <p>{item.age}</p>
+//             <p>{item.role}</p>
+//           </div>
+//           ))}
+//       </div>
+//     </div>
+//   )
+// } 
+
+
+
+type Product = {
   id: number;
   name: string;
-  age: number;
-  role: 'admin' | 'manager' | 'user';
+  price: number;
+  category:'all' | 'shoes' | 'clothes' | 'accessories';
 };
 
+interface CardProps{
+  card:Product
+}
 
-export const UserForm:FC = () => {
-  
-  const [filterUser,setFilterUser] = useState<'all' | User['role']>('all')
+const ProductCard:FC<CardProps> = ({card}) => {
+  return (
+    <div key={card.id}>
+        <h2>{card.name}</h2>
+        <p>{card.price}</p>
+        <p>{card.category}</p>
+    </div>
+  )
+}
 
-  const [userList,setUserList] = useState<User[]>([])
-  const [addUser,setAddUser] = useState({
+
+export const ProductList:FC = () => {
+
+  const [filterProduct,setFilterProduct] = useState<Product['category']>('all')
+
+  const [productList,setProductList] = useState<Product[]>([])
+  const [addProduct,setAddProduct] = useState({
     name:'',
-    age:0,
-    role:'user'
+    price:0,
+    category:'all'
   })
 
   const handleChange = (e:ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const {name,value} = e.target
-    setAddUser({...addUser,[name]:name === 'age'? Number(value):value})
+    setAddProduct({...addProduct,[name]:name === 'price'?Number(value):value})
   }
 
-  const handleSubmit = (e:FormEvent) => {
+  const handleSubmit = (e:FormEvent)=>{
     e.preventDefault()
 
-    const newUser:User = {
+    const newProduct:Product = {
       id:Date.now(),
-      name:addUser.name,
-      age:addUser.age,
-      role:addUser.role as 'admin' | 'manager' | 'user'
+      name:addProduct.name,
+      price:addProduct.price,
+      category:addProduct.category as 'all' | 'shoes' | 'clothes' | 'accessories'
     }
 
-    setUserList([...userList,newUser])
-    setAddUser({name:'',age:0,role:'user'})
+    setProductList([...productList,newProduct])
+    setAddProduct({name:'',price:0,category:'все'})
   }
 
-  const FilterIserFun = useMemo(()=>{
-    const filtred = [...userList]
-   
-    if(filterUser === 'all')return userList
-    if(filterUser === 'admin'){
-      return userList.filter(item=>item.role === 'admin')
-    } else if (filterUser === 'manager') {
-      return userList.filter(item=>item.role === 'manager')
-    } else if (filterUser === 'user') {
-      return userList.filter(item=>item.role === 'user')
-    }
-    return filtred
- 
-  },[filterUser,userList])
+  const filterResult = useMemo(()=>{
+  
+     if(filterProduct === 'all')return productList
+     return productList.filter(item=>item.category === filterProduct)
+
+  },[filterProduct,productList])
 
   return (
     <div>
       <div>
-         <select value={filterUser} onChange={(e)=>setFilterUser(e.target.value as 'all' | 'admin' | 'manager' | 'user')}>
+         <select value={filterProduct} onChange={(e)=>setFilterProduct(e.target.value as 'all' | 'shoes' | 'clothes' | 'accessories')}>
             <option value="all">Все</option>
-            <option value="admin">Админ</option>
-            <option value="manager">Менеджер</option>
-            <option value="user">Пользователь</option>
+            <option value="shoes">shoes</option>
+            <option value="clothes">clothes</option>
+            <option value="accessories">accessories</option>
          </select>
       </div>
 
@@ -275,7 +394,7 @@ export const UserForm:FC = () => {
             <input 
             type="text" 
             name="name"
-            value={addUser.name}
+            value={addProduct.name}
             onChange={handleChange}
             required 
             />
@@ -284,33 +403,38 @@ export const UserForm:FC = () => {
             <label>Возраст:</label>
             <input 
             type="number" 
-            name="age"
-            value={addUser.age}
+            name="price"
+            value={addProduct.price}
             onChange={handleChange}
             required 
             />
           </div>
           <div>
             <label>Роль:</label>
-            <select name="role" value={addUser.role} onChange={handleChange}>
-              <option value="admin">Админ</option>
-              <option value="manager">Менеджер</option>
-              <option value="user">Пользователь</option>
+            <select name="category" value={addProduct.category} onChange={handleChange}>
+              <option value="shoes">shoes</option>
+              <option value="clothes">clothes</option>
+              <option value="accessories">accessories</option>
             </select>
           </div>
 
           <button type="submit">Добавить</button>
       </form>
-
-      <div>
-          {FilterIserFun.map(item => (
-          <div key={item.id}>
-            <h2>{item.name}</h2>
-            <p>{item.age}</p>
-            <p>{item.role}</p>
+       
+       <div>
+        {filterResult && (
+          <div>
+            {filterResult.map(item=>(
+              
+                <ProductCard card={item} />
+              
+            ))}
           </div>
-          ))}
-      </div>
+        )}
+       </div>
+      
     </div>
   )
-} 
+}
+
+
