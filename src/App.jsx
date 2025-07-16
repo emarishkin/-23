@@ -1,7 +1,9 @@
 
-import { Objects } from "./components/Objects"
-// import { OOP } from "./components/OOP"
-import { TypeScript } from "./components/typeScript"
+// import { Objects } from "./components/Objects"
+// // import { OOP } from "./components/OOP"
+// import { TypeScript } from "./components/typeScript"
+
+import { Api } from "./components/Fetch-API-AXIOS"
 
 
 // import {Замыкания} from './components/Замыкания'
@@ -12,8 +14,9 @@ function App() {
     <>
        {/* <OOP/>
       <Замыкания /> */}
-      <Objects /> 
+      {/* <Objects />  */}
        {/* <TypeScript /> */}
+       <Api />
     </>
   )
 }
