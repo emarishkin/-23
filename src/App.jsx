@@ -1,19 +1,19 @@
 
-import { Objects } from "./components/Objects"
-import { OOP } from "./components/OOP"
-import { ProductList } from "./components/ReactTSX"
+// import { Objects } from "./components/Objects"
+// import { OOP } from "./components/OOP"
+import { TypeScript } from "./components/typeScript"
 
 
-import {Замыкания} from './components/Замыкания'
+// import {Замыкания} from './components/Замыкания'
 
 function App() {
 
   return (
     <>
-      <OOP/>
+      {/* <OOP/>
       <Замыкания />
-      <Objects />
-      <ProductList />
+      <Objects /> */}
+       <TypeScript />
     </>
   )
 }

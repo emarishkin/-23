@@ -317,124 +317,126 @@ import { ChangeEvent, FC, FormEvent, useMemo, useState } from "react";
 
 
 
-type Product = {
-  id: number;
-  name: string;
-  price: number;
-  category:'all' | 'shoes' | 'clothes' | 'accessories';
-};
+// type Product = {
+//   id: number;
+//   name: string;
+//   price: number;
+//   category:'all' | 'shoes' | 'clothes' | 'accessories';
+// };
 
-interface CardProps{
-  card:Product
-}
+// interface CardProps{
+//   card:Product
+// }
 
-const ProductCard:FC<CardProps> = ({card}) => {
-  return (
-    <div key={card.id}>
-        <h2>{card.name}</h2>
-        <p>{card.price}</p>
-        <p>{card.category}</p>
-    </div>
-  )
-}
+// const ProductCard:FC<CardProps> = ({card}) => {
+//   return (
+//     <div key={card.id}>
+//         <h2>{card.name}</h2>
+//         <p>{card.price}</p>
+//         <p>{card.category}</p>
+//     </div>
+//   )
+// }
 
 
-export const ProductList:FC = () => {
+// export const ProductList:FC = () => {
 
-  const [filterProduct,setFilterProduct] = useState<Product['category']>('all')
+//   const [filterProduct,setFilterProduct] = useState<Product['category']>('all')
 
-  const [productList,setProductList] = useState<Product[]>([])
-  const [addProduct,setAddProduct] = useState({
-    name:'',
-    price:0,
-    category:'all'
-  })
+//   const [productList,setProductList] = useState<Product[]>([])
+//   const [addProduct,setAddProduct] = useState({
+//     name:'',
+//     price:0,
+//     category:'all'
+//   })
 
-  const handleChange = (e:ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const {name,value} = e.target
-    setAddProduct({...addProduct,[name]:name === 'price'?Number(value):value})
-  }
+//   const handleChange = (e:ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+//     const {name,value} = e.target
+//     setAddProduct({...addProduct,[name]:name === 'price'?Number(value):value})
+//   }
 
-  const handleSubmit = (e:FormEvent)=>{
-    e.preventDefault()
+//   const handleSubmit = (e:FormEvent)=>{
+//     e.preventDefault()
 
-    const newProduct:Product = {
-      id:Date.now(),
-      name:addProduct.name,
-      price:addProduct.price,
-      category:addProduct.category as 'all' | 'shoes' | 'clothes' | 'accessories'
-    }
+//     const newProduct:Product = {
+//       id:Date.now(),
+//       name:addProduct.name,
+//       price:addProduct.price,
+//       category:addProduct.category as 'all' | 'shoes' | 'clothes' | 'accessories'
+//     }
 
-    setProductList([...productList,newProduct])
-    setAddProduct({name:'',price:0,category:'все'})
-  }
+//     setProductList([...productList,newProduct])
+//     setAddProduct({name:'',price:0,category:'все'})
+//   }
 
-  const filterResult = useMemo(()=>{
+//   const filterResult = useMemo(()=>{
   
-     if(filterProduct === 'all')return productList
-     return productList.filter(item=>item.category === filterProduct)
+//      if(filterProduct === 'all')return productList
+//      return productList.filter(item=>item.category === filterProduct)
 
-  },[filterProduct,productList])
+//   },[filterProduct,productList])
 
-  return (
-    <div>
-      <div>
-         <select value={filterProduct} onChange={(e)=>setFilterProduct(e.target.value as 'all' | 'shoes' | 'clothes' | 'accessories')}>
-            <option value="all">Все</option>
-            <option value="shoes">shoes</option>
-            <option value="clothes">clothes</option>
-            <option value="accessories">accessories</option>
-         </select>
-      </div>
+//   return (
+//     <div>
+//       <div>
+//          <select value={filterProduct} onChange={(e)=>setFilterProduct(e.target.value as 'all' | 'shoes' | 'clothes' | 'accessories')}>
+//             <option value="all">Все</option>
+//             <option value="shoes">shoes</option>
+//             <option value="clothes">clothes</option>
+//             <option value="accessories">accessories</option>
+//          </select>
+//       </div>
 
-      <form onSubmit={handleSubmit}>
-          <h2>Форма добавдения нового пользователя</h2>
-          <div>
-            <label>Имя:</label>
-            <input 
-            type="text" 
-            name="name"
-            value={addProduct.name}
-            onChange={handleChange}
-            required 
-            />
-          </div>
-          <div>
-            <label>Возраст:</label>
-            <input 
-            type="number" 
-            name="price"
-            value={addProduct.price}
-            onChange={handleChange}
-            required 
-            />
-          </div>
-          <div>
-            <label>Роль:</label>
-            <select name="category" value={addProduct.category} onChange={handleChange}>
-              <option value="shoes">shoes</option>
-              <option value="clothes">clothes</option>
-              <option value="accessories">accessories</option>
-            </select>
-          </div>
+//       <form onSubmit={handleSubmit}>
+//           <h2>Форма добавдения нового пользователя</h2>
+//           <div>
+//             <label>Имя:</label>
+//             <input 
+//             type="text" 
+//             name="name"
+//             value={addProduct.name}
+//             onChange={handleChange}
+//             required 
+//             />
+//           </div>
+//           <div>
+//             <label>Возраст:</label>
+//             <input 
+//             type="number" 
+//             name="price"
+//             value={addProduct.price}
+//             onChange={handleChange}
+//             required 
+//             />
+//           </div>
+//           <div>
+//             <label>Роль:</label>
+//             <select name="category" value={addProduct.category} onChange={handleChange}>
+//               <option value="shoes">shoes</option>
+//               <option value="clothes">clothes</option>
+//               <option value="accessories">accessories</option>
+//             </select>
+//           </div>
 
-          <button type="submit">Добавить</button>
-      </form>
+//           <button type="submit">Добавить</button>
+//       </form>
        
-       <div>
-        {filterResult && (
-          <div>
-            {filterResult.map(item=>(
+//        <div>
+//         {filterResult && (
+//           <div>
+//             {filterResult.map(item=>(
               
-                <ProductCard card={item} />
+//                 <ProductCard card={item} />
               
-            ))}
-          </div>
-        )}
-       </div>
+//             ))}
+//           </div>
+//         )}
+//        </div>
       
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
+
+
 
 
