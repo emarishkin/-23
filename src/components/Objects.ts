@@ -1,3 +1,5 @@
+import { useSyncExternalStore } from "react";
+
 export const Objects = () => {
     
 
@@ -716,26 +718,139 @@ export const Objects = () => {
 // console.log(uniqueNumbers([34,523,45,234,6,23456,245,6,2456,134,523,41,324,123,45,134,523,145,234,5]))
 
 
-const words = ['apple', 'banana', 'apple', 'orange', 'banana', 'apple'];
+// const words = ['apple', 'banana', 'apple', 'orange', 'banana', 'apple'];
 
-function averageScores(words: string[]): Record<string, number>  {
-  const newObj:Record<string,number> = {}
+// function averageScores(words: string[]): Record<string, number>  {
+//   const newObj:Record<string,number> = {}
 
-  for(let word of words){
-    if(!newObj[word]){
-      newObj[word] = 0
+//   for(let word of words){
+//     if(!newObj[word]){
+//       newObj[word] = 0
+//     }
+//     newObj[word] +=1
+//     // if(newObj[word]){
+//     //   newObj[word] += 1
+//     // } else {
+//     //   newObj[word] = 1
+//     // }
+//   }
+//   return newObj
+
+// }
+// console.log(averageScores(words))
+
+
+
+// type User = {
+//   id: number;
+//   name: string;
+//   age: number;
+// };
+
+// const users: User[] = [
+//   { id: 1, name: "Alice", age: 21 },
+//   { id: 2, name: "Bob", age: 25 },
+//   { id: 3, name: "Charlie", age: 21 },
+// ];
+
+// const groupUsersByAge = (users:User[]):{[key:number]:User[]} => {
+//   const newObj:{[key:number]:User[]} = {}
+  
+//   for(let user of users){
+//     if(!newObj[user.age]){
+//       newObj[user.age] = []
+//     }
+//     newObj[user.age].push(user)
+//   }
+//   return newObj
+// }
+// const res = groupUsersByAge(users)
+// console.log(res)
+
+
+// const numbers = [1, 2, 2, 3, 4, 4, 5];
+
+// // const getUniqueNumbers = (numbers:number[]):number[] => {
+// //   const unique = [...new Set(numbers)]
+// //   return unique
+// // }
+// // const res = getUniqueNumbers(numbers)
+// // console.log(res)
+
+
+
+// const getUniqueNumbers = (numbers:number[]):number[] => {
+//   const resultArr:number[] = []
+
+//   for(let number of numbers){
+
+//     if(!resultArr.includes(number)){
+//       resultArr.push(number)
+//     }
+
+//   }
+//   return resultArr
+// }
+// const res = getUniqueNumbers(numbers)
+// console.log(res)
+
+
+type Product = {
+  id: number;
+  title: string;
+  price: number;
+};
+
+const products: Product[] = [
+  { id: 1, title: "Book", price: 10 },
+  { id: 2, title: "Laptop", price: 1000 },
+  { id: 3, title: "Pen", price: 2 },
+];
+
+// const filterProductsByPrice = (products:Product[],maxPrice:number):Product[] => {
+//   const newArr:Product[] = []
+  
+//   const filtredItem = products.filter(item => item.price <= maxPrice)
+
+//    return filtredItem
+// }
+
+// const filterProductsByPrice = (products:Product[],maxPrice:number):Product[] => {
+//   const newArr:Product[] = []
+
+//   for(let product of products){
+//     if(product.price<=maxPrice){
+//       newArr.push(product)
+//     }
+//   }
+//   return newArr
+
+// }
+
+
+// const res = filterProductsByPrice(products,10)
+// console.log(res)
+
+const str = 'qwertyqweqwq'
+
+const countLetters = (str: string): { [key: string]: number } => {
+  const newObj:{ [key: string]: number } = {}
+ 
+  const items = str.split('')
+
+  for(let item of items){
+    if(newObj[item]){
+      newObj[item]++
+    } else {
+      newObj[item]=1
     }
-    newObj[word] +=1
-    // if(newObj[word]){
-    //   newObj[word] += 1
-    // } else {
-    //   newObj[word] = 1
-    // }
   }
   return newObj
 
 }
-console.log(averageScores(words))
+const res = countLetters(str)
+console.log(res)
+
 
 
 
