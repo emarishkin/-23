@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from "react";
+import { use, useSyncExternalStore } from "react";
 
 export const Objects = () => {
     
@@ -795,17 +795,17 @@ export const Objects = () => {
 // console.log(res)
 
 
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-};
+// type Product = {
+//   id: number;
+//   title: string;
+//   price: number;
+// };
 
-const products: Product[] = [
-  { id: 1, title: "Book", price: 10 },
-  { id: 2, title: "Laptop", price: 1000 },
-  { id: 3, title: "Pen", price: 2 },
-];
+// const products: Product[] = [
+//   { id: 1, title: "Book", price: 10 },
+//   { id: 2, title: "Laptop", price: 1000 },
+//   { id: 3, title: "Pen", price: 2 },
+// ];
 
 // const filterProductsByPrice = (products:Product[],maxPrice:number):Product[] => {
 //   const newArr:Product[] = []
@@ -831,25 +831,144 @@ const products: Product[] = [
 // const res = filterProductsByPrice(products,10)
 // console.log(res)
 
-const str = 'qwertyqweqwq'
+// const str = 'qwertyqweqwq'
 
-const countLetters = (str: string): { [key: string]: number } => {
-  const newObj:{ [key: string]: number } = {}
+// const countLetters = (str: string): { [key: string]: number } => {
+//   const newObj:{ [key: string]: number } = {}
  
-  const items = str.split('')
+//   const items = str.split('')
 
-  for(let item of items){
-    if(newObj[item]){
-      newObj[item]++
-    } else {
-      newObj[item]=1
-    }
-  }
-  return newObj
+//   for(let item of items){
+//     if(newObj[item]){
+//       newObj[item]++
+//     } else {
+//       newObj[item]=1
+//     }
+//   }
+//   return newObj
 
-}
-const res = countLetters(str)
-console.log(res)
+// }
+// const res = countLetters(str)
+// console.log(res)
+
+
+
+type User = {
+  id: number;
+  name: string;
+};
+
+// const users: User[] = [
+//   { id: 1, name: "Alice" },
+//   { id: 2, name: "bob" },
+//   { id: 3, name: "Charlie" },
+// ];
+
+// const findUserByName = (users:User[],searchName: string):User|undefined => {
+//   return users.find(item=>item.name.toLowerCase() === searchName.toLowerCase())
+// }
+// const res = findUserByName(users,'bob')
+// console.log(res)
+
+
+// const usersWithDuplicates: User[] = [
+//   { id: 1, name: "Alice" },
+//   { id: 2, name: "Bob" },
+//   { id: 1, name: "Alice" }, // дубликат
+//   { id: 3, name: "Charlie" },
+// ];
+
+// const removeDuplicateUsers = (users:User[]):User[] => {
+  
+//   const newArr:User[] = []
+//   const unique = new Set<number>()
+
+//   for(let user of users) {
+//     if(!unique.has(user.id)){
+//       unique.add(user.id)
+//       newArr.push(user)
+//     }
+//   }
+//   return newArr
+// }
+// const res = removeDuplicateUsers(usersWithDuplicates)
+// console.log(res)
+
+
+
+// type Product = {
+//   id: number;
+//   title: string;
+//   price: number;
+// };
+
+// const products: Product[] = [
+//   { id: 1, title: "Phone", price: 500 },
+//   { id: 2, title: "Laptop", price: 1200 },
+//   { id: 3, title: "Tablet", price: 800 },
+// ];
+
+// // const getMostExpensive = (products:Product[]):Product | null => {
+// //   return products.reduce((max,current)=>max.price>current.price?max:current)
+// // }
+
+// // const getMostExpensive = (products:Product[]):Product | null => {
+// //  const maxPrice = Math.max(...products.map(item=>item.price))
+// //  const maxItem = products.find(item => item.price === maxPrice)
+// //  return maxItem || null
+// // }
+
+
+
+// const res = getMostExpensive(products)
+// console.log(res)
+
+
+
+
+
+
+
+
+
+
+// const usersList: User[] = [
+//   { id: 1, name: "Alice" },
+//   { id: 2, name: "Bob" },
+// ];
+
+// const mapUsersById = (usersList:User[]):{[id:number]:User} => {
+  
+//   const newObj:{[id:number]:User} = {}
+
+//   for(let user of usersList){
+//     if(!newObj[user.id]){
+//       newObj[user.id] = user
+//     }
+//   }
+//   return newObj
+// }
+// const res = mapUsersById(usersList)
+// console.log(res)
+
+// type Product = {
+//   id: number;
+//   title: string;
+//   price: number;
+// };
+
+// const products: Product[] = [
+//   { id: 1, title: "Phone", price: 500 },
+//   { id: 2, title: "Laptop", price: 1200 },
+//   { id: 3, title: "Tablet", price: 800 },
+// ];
+
+// function sortProductsByPrice(products: Product[]): Product[] {
+//   const copy = [...products]
+//  return copy.sort((a,b)=>a.price-b.price)
+// }
+// const res = sortProductsByPrice(products)
+// console.log(res)
 
 
 
