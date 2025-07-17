@@ -92,35 +92,48 @@ export const Api = () => {
 
 
 
-interface Todo {
-  userId: number;
-  email: string;
-  password: string;
-}
+// interface Todo {
+//   userId: number;
+//   email: string;
+//   password: string;
+// }
 
-async function createTodo(todo:Todo):Promise<Todo | null>{
-    try{
-        const response = await axios.post<Todo>('https://fakestoreapi.in/api/users',todo)
-        return response.data
-    } catch (error) {
-        console.error('Ошибка при создании задачи:', error);
-        return null
-    }
-}
+// async function createTodo(todo:Todo):Promise<Todo | null>{
+//     try{
+//         const response = await axios.post<Todo>('https://fakestoreapi.in/api/users',todo)
+//         return response.data
+//     } catch (error) {
+//         console.error('Ошибка при создании задачи:', error);
+//         return null
+//     }
+// }
 
-const newTodo: Todo = {
-  userId: 1,
-  email: "ee1111ee@gmail.com",
-  password: 'fwdfwdefwefwqefwqefwefwefwefwefwef',
-};
+// const newTodo: Todo = {
+//   userId: 1,
+//   email: "ee1111ee@gmail.com",
+//   password: 'fwdfwdefwefwqefwqefwefwefwefwefwef',
+// };
 
-createTodo(newTodo).then((created)=>{
-    if(created){
-        console.log("Создана задача:", created);
-    }else {
-    console.log("Не удалось создать задачу");
-  }
-})
+// createTodo(newTodo).then((created)=>{
+//     if(created){
+//         console.log("Создана задача:", created);
+//     }else {
+//     console.log("Не удалось создать задачу");
+//   }
+// })
+
+
+// const Faktorial = (n:number):number => {
+//   if(n===0 || n === 1){
+//     return 1
+//   }
+//   return n * Faktorial(n-1)
+// }
+// console.log(Faktorial(12))
+
+
+
+
 
 
 
