@@ -7,7 +7,7 @@
 //   status: 'pending' | 'shipped' | 'delivered';
 // };
 
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 // interface OrderCardProps{
 //     order:Order
@@ -437,50 +437,101 @@ import { FC, useState } from "react";
 //   )
 // }
 
-interface TodoItem{
-  id: number;
-  text: string;
-  completed: boolean;
-}
+// interface TodoItem{
+//   id: number;
+//   text: string;
+//   completed: boolean;
+// }
 
-type TodoListProps = {
-  todos: TodoItem;
-  onToggle: (id: number) => void;
-};
+// type TodoListProps = {
+//   todos: TodoItem;
+//   onToggle: (id: number) => void;
+// };
 
-let todos:TodoItem[] = [
-    { id: 1, text: "Выучить TypeScript", completed: true },
-    { id: 2, text: "Пойти на собеседование", completed: false }
-  ]
+// let todos:TodoItem[] = [
+//     { id: 1, text: "Выучить TypeScript", completed: true },
+//     { id: 2, text: "Пойти на собеседование", completed: false }
+//   ]
 
- const TodoItem:FC<TodoListProps> = ({todos,onToggle}) => {
-    return (
-        <div>
-           <h2>{todos.text}</h2>
-           <button onClick={()=>onToggle(todos.id)}>{todos.completed?'Выполнено':'Не выполнено'}</button> 
-        </div>
-    )
-}
+//  const TodoItem:FC<TodoListProps> = ({todos,onToggle}) => {
+//     return (
+//         <div>
+//            <h2>{todos.text}</h2>
+//            <button onClick={()=>onToggle(todos.id)}>{todos.completed?'Выполнено':'Не выполнено'}</button> 
+//         </div>
+//     )
+// }
 
-export const TodoList = () => {
+// export const TodoList = () => {
     
-    const [TodoList,setTodoList] = useState([
-    { id: 1, text: "Выучить TypeScript", completed: true },
-    { id: 2, text: "Пойти на собеседование", completed: false }
-    ])
+//     const [TodoList,setTodoList] = useState([
+//     { id: 1, text: "Выучить TypeScript", completed: true },
+//     { id: 2, text: "Пойти на собеседование", completed: false }
+//     ])
 
-    const handleClick = (id:number) => {
-      setTodoList(TodoList.map(item=>item.id===id?{...item,completed:!item.completed}:item))
+//     const handleClick = (id:number) => {
+//       setTodoList(TodoList.map(item=>item.id===id?{...item,completed:!item.completed}:item))
+//     }
+
+//     return (
+//         <div>
+//             {TodoList.map(item => (
+//                 <div>
+//                     <TodoItem todos={item} onToggle={()=>handleClick(item.id)} />
+//                 </div>
+//             ))} 
+//         </div>
+       
+//     )
+// }
+
+
+export const Stopwatch:FC = () => {
+
+    const [count,setCount] = useState<number>(0)
+    const [isRunning,setIsRunning] = useState<boolean>(false)
+    
+    const handleClickStart = () => {
+        if(!isRunning){
+            setIsRunning(true)
+        }
     }
 
+    const handleClickStop = () => {
+        if(isRunning){
+            setIsRunning(false)
+        }
+    }
+
+    const handleClickReset = () => {
+        setCount(0)
+        setIsRunning(false)
+    }
+    
+    useEffect(()=>{
+        let interval;
+
+        if(isRunning){
+           interval = setInterval(()=>{
+                setCount(prev=>prev+1)
+            },1000)
+        } 
+        return ()=>{
+           clearInterval(interval)
+        }
+        
+    },[isRunning])
+
     return (
         <div>
-            {TodoList.map(item => (
-                <div>
-                    <TodoItem todos={item} onToggle={()=>handleClick(item.id)} />
-                </div>
-            ))} 
+            <button onClick={handleClickStart}>Start</button>
+            <button onClick={handleClickStop}>Stop</button>
+            <button onClick={handleClickReset}>Reset</button>
+            <div>
+                {count}
+            </div>
         </div>
-       
+        
     )
 }
+

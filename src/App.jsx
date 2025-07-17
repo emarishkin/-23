@@ -1,4 +1,5 @@
-import { TodoList } from "./components/ReactTSX"
+import { Stopwatch } from "./components/ReactTSX"
+
 
 
 
@@ -7,7 +8,7 @@ function App() {
 
   return (
     <>
-     <TodoList />
+     <Stopwatch />
     </>
   )
 }
