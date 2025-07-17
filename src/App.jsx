@@ -1,4 +1,5 @@
-import { MapAndSet } from "./components/MapAndSet"
+import { TodoList } from "./components/ReactTSX"
+
 
 
 
@@ -6,7 +7,7 @@ function App() {
 
   return (
     <>
-     <MapAndSet />
+     <TodoList />
     </>
   )
 }

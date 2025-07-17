@@ -1,6 +1,4 @@
-// import { ChangeEvent, FC, FormEvent, useMemo, useState } from "react";
 
-import { ChangeEvent, FC, FormEvent, useMemo, useState } from "react";
 
 // type Order = {
 //   id: number;
@@ -8,6 +6,8 @@ import { ChangeEvent, FC, FormEvent, useMemo, useState } from "react";
 //   amount: number;
 //   status: 'pending' | 'shipped' | 'delivered';
 // };
+
+import { FC, useState } from "react";
 
 // interface OrderCardProps{
 //     order:Order
@@ -437,6 +437,50 @@ import { ChangeEvent, FC, FormEvent, useMemo, useState } from "react";
 //   )
 // }
 
+interface TodoItem{
+  id: number;
+  text: string;
+  completed: boolean;
+}
 
+type TodoListProps = {
+  todos: TodoItem;
+  onToggle: (id: number) => void;
+};
 
+let todos:TodoItem[] = [
+    { id: 1, text: "Выучить TypeScript", completed: true },
+    { id: 2, text: "Пойти на собеседование", completed: false }
+  ]
 
+ const TodoItem:FC<TodoListProps> = ({todos,onToggle}) => {
+    return (
+        <div>
+           <h2>{todos.text}</h2>
+           <button onClick={()=>onToggle(todos.id)}>{todos.completed?'Выполнено':'Не выполнено'}</button> 
+        </div>
+    )
+}
+
+export const TodoList = () => {
+    
+    const [TodoList,setTodoList] = useState([
+    { id: 1, text: "Выучить TypeScript", completed: true },
+    { id: 2, text: "Пойти на собеседование", completed: false }
+    ])
+
+    const handleClick = (id:number) => {
+      setTodoList(TodoList.map(item=>item.id===id?{...item,completed:!item.completed}:item))
+    }
+
+    return (
+        <div>
+            {TodoList.map(item => (
+                <div>
+                    <TodoItem todos={item} onToggle={()=>handleClick(item.id)} />
+                </div>
+            ))} 
+        </div>
+       
+    )
+}

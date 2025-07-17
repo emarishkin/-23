@@ -1,4 +1,5 @@
-import { count } from "console"
+import { FC } from "react";
+
 
 export const MapAndSet = () => {
 
@@ -232,19 +233,36 @@ export const MapAndSet = () => {
 // console.log(res)
 
 
-const str = "abc"
+// const str = "abc"
 
 
-function areAllUnique(str){
-    const unique = new Set(str)
-    const strArr = str.split('')
-    if(strArr.length === unique.size){
-        return true
-    }
-    return false
-}
-const res = areAllUnique(str)
-console.log(res)
+// function areAllUnique(str){
+//     const unique = new Set(str)
+//     const strArr = str.split('')
+//     if(strArr.length === unique.size){
+//         return true
+//     }
+//     return false
+// }
+// const res = areAllUnique(str)
+// console.log(res)
+
+
+
+
+// type ButtonProps = {
+//   onClick: () => void;
+//   children: React.ReactNode;
+//   buttonArea:number
+//   disabled:boolean
+// };
+
+// const Button:FC = ({ onClick, children ,buttonArea,disabled }: ButtonProps) => {
+//   return (
+//        <button className='qwerty' type='submit' aria={buttonArea} disabled={true} onClick={onClick}>{children}</button>;
+//   )
+// };
+
 
 
 
